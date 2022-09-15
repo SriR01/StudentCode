@@ -32,8 +32,13 @@ public class Exercise07_StoreHours {
     isStoreOpen(22) ➔ false
      */
     public boolean isStoreOpen(int currentHour) {
-        return false;
+        if (currentHour >= 8 && currentHour < 17) {
+            return true;
+        } else {
+            return false;
+        }
     }
+
 
     /*
     Shelia forgot to take into account the day of the week.
@@ -54,7 +59,16 @@ public class Exercise07_StoreHours {
     isStoreOpen(12, 'S') ➔ false
      */
     public boolean isStoreOpen(int currentHour, char currentDay) {
-        return false;
+        if (currentDay == 'M' || currentDay == 'W' || currentDay == 'F'){
+            if (currentHour >= 8 && currentHour < 17) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
 
@@ -72,6 +86,38 @@ public class Exercise07_StoreHours {
     isStoreOpen(9, 'S', true) ➔ true
      */
     public boolean isStoreOpen(int currentHour, char currentDay, boolean isSummer) {
+        if (isSummer != true) {
+            if (currentDay == 'M' || currentDay == 'W' || currentDay == 'F'){
+                if (currentHour >= 8 && currentHour < 17) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+        else {
+            if (currentDay == 'M' || currentDay == 'W' || currentDay == 'F' || currentDay == 'S'){
+                if (currentHour >= 8 && currentHour < 17) {
+                    return true;
+                } else if (currentDay == 'W') {
+                    if (currentHour >=8 && currentHour < 20) {
+                        return true;
+                    }
+                } else if (currentDay == 'S') {
+                    if (currentHour >= 9 && currentHour < 15) {
+                        return true;
+                    }
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
         return false;
     }
 }
+

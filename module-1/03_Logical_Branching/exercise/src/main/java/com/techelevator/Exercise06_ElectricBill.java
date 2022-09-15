@@ -24,7 +24,13 @@ public class Exercise06_ElectricBill {
     calculateElectricBill(110) ➔ 22.5
      */
     public double calculateElectricBill(double unitsUsed) {
-        return 0;
+        double electricBill = 0.0;
+        if (unitsUsed <= BASIC_SERVICE_LIMIT) {
+            electricBill = BASIC_SERVICE_RATE * unitsUsed;
+        } else if (unitsUsed > BASIC_SERVICE_LIMIT) {
+            electricBill = (BASIC_SERVICE_RATE * BASIC_SERVICE_LIMIT) + ((unitsUsed - BASIC_SERVICE_LIMIT) * EXCESS_SERVICE_RATE);
+        }
+        return electricBill;
     }
 
     /*
@@ -40,7 +46,16 @@ public class Exercise06_ElectricBill {
     calculateElectricBill(110, true) ➔ 21.375
      */
     public double calculateElectricBill(double unitsUsed, boolean hasRenewableEnergy) {
-        return 0;
+        double electricBill = 0.0;
+        if (unitsUsed <= BASIC_SERVICE_LIMIT) {
+            electricBill = BASIC_SERVICE_RATE * unitsUsed;
+        } else if (unitsUsed > BASIC_SERVICE_LIMIT) {
+            electricBill = (BASIC_SERVICE_RATE * BASIC_SERVICE_LIMIT) + ((unitsUsed - BASIC_SERVICE_LIMIT) * EXCESS_SERVICE_RATE);
+        }
+        if (hasRenewableEnergy == true) {
+            electricBill = electricBill - (RENEWABLE_ENERGY_DISCOUNT * electricBill);
+        }
+        return electricBill;
     }
 
     /*
@@ -66,6 +81,17 @@ public class Exercise06_ElectricBill {
     calculateElectricBill(110, 120) ➔ -2.0
      */
     public double calculateElectricBill(double unitsUsed, double unitsReturned) {
-        return 0;
+        double electricBill = 0.0;
+        if (unitsUsed <= BASIC_SERVICE_LIMIT) {
+            electricBill = BASIC_SERVICE_RATE * unitsUsed;
+        } else if (unitsUsed > BASIC_SERVICE_LIMIT) {
+            electricBill = (BASIC_SERVICE_RATE * BASIC_SERVICE_LIMIT) + ((unitsUsed - BASIC_SERVICE_LIMIT) * EXCESS_SERVICE_RATE);
+        }
+        electricBill = electricBill - (unitsReturned * BASIC_SERVICE_RATE);
+        if ((electricBill > 0) && (unitsReturned > 0)) {
+            electricBill = electricBill * (1-RENEWABLE_ENERGY_DISCOUNT);
+        }
+        return electricBill;
     }
 }
+
