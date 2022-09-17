@@ -34,7 +34,7 @@ public class LinearConvert {
 			feet = meters * 3.2808399;
 			convertedLength = (int) feet;
 		}
-		System.out.println(length + lengthUnitString + " is " + convertedLength + conversionUnit);
+		System.out.println(length + lengthUnitString + " is " + convertedLength + conversionUnit + ".");
 	}
 
 }

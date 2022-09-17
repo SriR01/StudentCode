@@ -34,6 +34,6 @@ public class TempConvert {
 			temperatureFahrenheit = temperatureCelsius * 1.8 + 32;
 			convertedTemp = (int) temperatureFahrenheit;
 		}
-		System.out.println(temp + tempUnitString + " is " + convertedTemp + conversionUnit);
+		System.out.println(temp + tempUnitString + " is " + convertedTemp + conversionUnit+".");
 	}
 }
