@@ -11,7 +11,7 @@ public class Exercises {
 	 helloName("X") → "Hello X!"
 	 */
 	public String helloName(String name) {
-		String retMsg = "Hello " + name + "" + "!";
+		String retMsg = "Hello " + name + "!";
 		return retMsg;
 	}
 
