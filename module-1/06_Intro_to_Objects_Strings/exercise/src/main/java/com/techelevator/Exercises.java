@@ -257,7 +257,13 @@ public class Exercises {
 	 twoChar("java", 3) → "ja"
 	 */
 	public String twoChar(String str, int n) {
-		
+		System.out.println(str);
+		System.out.println(n);
+		if ((2 > str.length()-n) || (n<0)) {
+			return str.substring(0,2);
+		} else {
+			return str.substring(n, n+2);
+		}
 
 
 	}
@@ -284,7 +290,17 @@ public class Exercises {
 	 hasBad("xxbadxx") → false
 	 */
 	public boolean hasBad(String str) {
-		return true;
+		if (str.length() < 3) {
+			return false;
+		} else if (str.substring(0,3).equals("bad")) {
+			return true;
+		} else if (str.length() == 3) {
+			return false;
+		} else if (str.substring(1,4).equals("bad")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/*
@@ -294,7 +310,11 @@ public class Exercises {
 	 stringTimes("Hi", 1) → "Hi"
 	 */
 	public String stringTimes(String str, int n) {
-		return null;
+		String stringTimes = "";
+		for (int i=0; i < n; i++) {
+			stringTimes = str + stringTimes;
+		}
+		return stringTimes;
 	}
 
 	/*
@@ -305,7 +325,18 @@ public class Exercises {
 	 frontTimes("Abc", 3) → "AbcAbcAbc"
 	 */
 	public String frontTimes(String str, int n) {
-		return null;
+		String frontTimesString = "";
+		if (str.length() <3) {
+			for (int i =0; i <n; i++) {
+				frontTimesString = str + frontTimesString;
+			}
+		} else {
+			String frontString = str.substring(0,3);
+			for (int i =0; i <n; i++) {
+				frontTimesString = frontString + frontTimesString;
+			}
+		}
+		return frontTimesString;
 	}
 
 	/*
@@ -325,6 +356,18 @@ public class Exercises {
 	 doubleX("xxxxx") → true
 	 */
 	public boolean doubleX(String str) {
+		for (int i =0; i < str.length(); i++) {
+			if (str.length()-1 == i) {
+				break;
+			}
+			if (str.charAt(i)=='x') {
+				if (str.substring(i,i+2).equals("xx")) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		}
 		return false;
 	}
 
@@ -335,7 +378,12 @@ public class Exercises {
 	 stringBits("Heeololeo") → "Hello"
 	 */
 	public String stringBits(String str) {
-		return null;
+		String stringBitString="";
+		for(int i =0; i< str.length(); i = i+2) {
+			stringBitString = stringBitString + str.charAt(i) ;
+		}
+		return stringBitString;
+
 	}
 
 	/*
@@ -345,7 +393,12 @@ public class Exercises {
 	 stringSplosion("ab") → "aab"
 	 */
 	public String stringSplosion(String str) {
-		return null;
+		String stringSplosionString = "";
+
+		for(int i=0; i<str.length(); i++) {
+			stringSplosionString = stringSplosionString + str.substring(0,i+1);
+		}
+		return stringSplosionString;
 	}
 
 	/*
@@ -356,7 +409,17 @@ public class Exercises {
 	 last2("axxxaaxx") → 2
 	 */
 	public int last2(String str) {
-		return 0;
+		if (str.length()-2 < 0) {
+			return 0;
+		}
+		String lastSub = str.substring(str.length()-2);
+		int counter = 0;
+		for (int i = 0; i<str.length()-2; i++) {
+			if (str.substring(i,i+2).equals(lastSub)) {
+				counter++;
+			}
+		}
+		return counter;
 	}
 
 	/*
@@ -367,7 +430,18 @@ public class Exercises {
 	 stringX("xabxxxcdx") → "xabcdx"
 	 */
 	public String stringX(String str) {
-		return null;
+		String stringWithoutX = "";
+		for (int i=0; i <str.length(); i++) {
+			if ((i == 0) || (i == str.length()-1)) {
+				if (str.charAt(i)=='x') {
+					stringWithoutX = stringWithoutX + 'x';
+				}
+			}
+			if (str.charAt(i)!='x') {
+				stringWithoutX = stringWithoutX + str.charAt(i);
+			}
+		}
+		return stringWithoutX;
 	}
 
 	/*
@@ -377,7 +451,19 @@ public class Exercises {
 	 altPairs("CodingHorror") → "Congrr"
 	 */
 	public String altPairs(String str) {
-		return null;
+	String altString = "";
+	for (int i =0; i < str.length(); i=i+4) {
+		if ((i + 2) > str.length()) {
+			if ((i + 1 > str.length())) {
+				break;
+			} else if ((i % 4) == 0) {
+				altString = altString + str.charAt(i);
+				break;
+			}
+		}
+		altString = altString + str.substring(i,i+2);
+	}
+	return altString;
 	}
 
 	/*
