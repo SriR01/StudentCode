@@ -2,6 +2,7 @@ package com.techelevator.projects.dao;
 
 import com.techelevator.projects.model.Department;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface DepartmentDao {
