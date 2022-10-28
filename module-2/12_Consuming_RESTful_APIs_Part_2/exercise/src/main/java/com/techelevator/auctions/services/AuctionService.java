@@ -17,13 +17,23 @@ public class AuctionService {
 
 
     public Auction add(Auction newAuction) {
-        // place code here
-        return null;
+        Auction returnAuction = null;
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Auction> auctionHttpEntity = new HttpEntity<>(newAuction,headers);
+        try {
+            returnAuction = restTemplate.postForObject(API_BASE_URL,auctionHttpEntity,Auction.class);
+        } catch (ResourceAccessException e) {}
+        return returnAuction;
     }
 
     public boolean update(Auction updatedAuction) {
-        // place code here
-        return false;
+        boolean returnVal = false;
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Auction> auctionHttpEntity = new HttpEntity<>(updatedAuction,headers);
+        restTemplate.put(API_BASE_URL,auctionHttpEntity);
+        return returnVal;
     }
 
     public boolean delete(int auctionId) {
