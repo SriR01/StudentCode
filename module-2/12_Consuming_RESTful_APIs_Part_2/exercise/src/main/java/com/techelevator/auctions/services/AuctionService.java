@@ -4,6 +4,7 @@ import com.techelevator.util.BasicLogger;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
@@ -32,13 +33,23 @@ public class AuctionService {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Auction> auctionHttpEntity = new HttpEntity<>(updatedAuction,headers);
-        restTemplate.put(API_BASE_URL,auctionHttpEntity);
+        try {
+            restTemplate.put(API_BASE_URL + updatedAuction.getId(), auctionHttpEntity);
+            returnVal = true;
+        } catch (HttpClientErrorException e) {}
+        catch (ResourceAccessException f) {}
         return returnVal;
     }
 
     public boolean delete(int auctionId) {
-        // place code here
-        return false;
+        boolean returnVal = false;
+        try {
+            restTemplate.delete(API_BASE_URL + auctionId);
+            returnVal = true;
+        } catch (HttpClientErrorException e) {
+        } catch (ResourceAccessException f) {
+        }
+        return returnVal;
     }
 
     public Auction[] getAllAuctions() {
