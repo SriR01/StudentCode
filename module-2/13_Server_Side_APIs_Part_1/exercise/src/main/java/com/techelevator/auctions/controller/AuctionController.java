@@ -3,7 +3,6 @@ package com.techelevator.auctions.controller;
 import com.techelevator.auctions.dao.AuctionDao;
 import com.techelevator.auctions.dao.MemoryAuctionDao;
 import com.techelevator.auctions.model.Auction;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ public class AuctionController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Auction> list(@RequestParam(value = "title_like", defaultValue = "") @NotNull String title,
+    public List<Auction> list(@RequestParam(value = "title_like", defaultValue = "") String title,
                               @RequestParam(value = "currentBid_lte", defaultValue = "0") double currentBid){
         if (!title.isEmpty() && currentBid > 0) {
             return dao.searchByTitleAndPrice(title, currentBid);
