@@ -81,6 +81,9 @@ section {
 }
 
 section>div{
-  display: inline-block;
+  display:inline-block;
   width: 33%;
+  margin-top: 10px;
+  margin-right: 10px;
+  border-right: 1px solid rgba(170, 239, 135, 0.8);
 }
