@@ -19,6 +19,14 @@
  * @param {boolean} [recommendation=false] does the student have a recommendation
  * @returns {boolean} true if they are admitted
  */
+function isAdmitted(gpa, satScore = 0, recommendation = false) {
+    if ((gpa > 4.0) || (satScore > 1300) || ((gpa > 3.0)&&(recommendation)) || ((satScore>1200)&&(recommendation))) {
+        return true;
+    } else{
+        return false;
+    }
+    
+}
 
 /**
  * Write a function called useParameterToFilterArray that accepts a filter function
@@ -28,6 +36,9 @@
  * @returns {number[]} the filtered array
  */
 let unfilteredArray = [1, 2, 3, 4, 5, 6];
+function useParameterToFilterArray(filterFunction) {
+    return filteredArray = unfilteredArray.filter(filterFunction);
+} 
 
 /**
  * Write a function called makeNumber that takes two strings
@@ -42,6 +53,12 @@ let unfilteredArray = [1, 2, 3, 4, 5, 6];
  * @returns {number} the resultant number
  */
 
+function makeNumber(first, second = '') {
+    result = first.concat(second);
+    resultNumber = Number(result);
+    return resultNumber;
+}
+
 /**
  * Write a function called addAll that takes an unknown number of parameters
  * and adds all of them together. Return the sum.
@@ -50,11 +67,24 @@ let unfilteredArray = [1, 2, 3, 4, 5, 6];
  * @returns {number} the sum of all the parameters (or arguments)
  */
 
+ function addAll() {
+    let addNum = 0;
+    for (let i = 0; i < arguments.length; i++) {
+       addNum += arguments[i];
+    }
+    return addNum;
+ }
+
 /*
  * Write and document a function called makeHappy that takes
  * an array and prepends 'Happy ' to the beginning of all the
  * words and returns them as a new array. Use the `map` function.
  */
+function makeHappy(array) {
+    let preString = "Happy "
+    let happyArray = array.map((s) => preString + s);
+    return happyArray;
+}
 
 /*
  * Write and document a function called getFullAddressesOfProperties
@@ -76,6 +106,8 @@ let unfilteredArray = [1, 2, 3, 4, 5, 6];
  *
  * Use `map` and an anonymous function.
  */
+
+
 
 /** 
  * Write and document a function called findLargest that uses `forEach`

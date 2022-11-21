@@ -35,7 +35,7 @@ The three required layouts are a desktop layout (greater than 1024px), a tablet 
 
 **Desktop layout**
 
-![Desktop layout](./img/layout-desktop.png)
+![Desktop layout](./img/layout-dtop.png)
 
 **Tablet layout**
 
