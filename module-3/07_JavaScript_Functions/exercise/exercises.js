@@ -107,7 +107,7 @@ function makeHappy(array) {
  * Use `map` and an anonymous function.
  */
 
-
+const getFullAddressesOfProperties = array => array.map(object => `${object.streetNumber} ${object.streetName} ${object.streetType} ${object.city} ${object.state} ${object.zip}`);
 
 /** 
  * Write and document a function called findLargest that uses `forEach`
@@ -123,6 +123,11 @@ function makeHappy(array) {
  * @param {number[]|string[]} searchArray the array to search
  * @returns {number|string} the number or string that is largest
  **/
+
+ const findLargest = searchArray => {
+    searchArray.sort();
+    return searchArray[searchArray.length - 1];
+}
 
 
 /*
