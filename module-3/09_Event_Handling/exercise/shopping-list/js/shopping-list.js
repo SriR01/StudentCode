@@ -36,3 +36,64 @@ function displayGroceries() {
     ul.appendChild(li);
   });
 }
+
+function markAllCompleted() {
+ let groceryList = document.querySelectorAll("li");
+ let toggleButton = document.getElementById('toggleAll');
+  groceryList.forEach((grocery) => {
+    grocery.classList.add("completed");
+    grocery.setAttribute('completed',true);
+  });
+  allItemsIncomplete = false;
+  toggleButton.innerText = 'Mark All Incomplete';
+}
+
+function markAllIncomplete() {
+  let groceryList = document.querySelectorAll("li");
+  let toggleButton = document.getElementById('toggleAll');
+  groceryList.forEach((grocery) => {
+    grocery.removeAttribute("class");
+    grocery.setAttribute('completed',false);
+  }); 
+  allItemsIncomplete = true;
+  toggleButton.innerText ='Mark All Complete';
+}
+
+function markItemComplete(event) {
+  event.target.setAttribute('class','completed');
+  event.target.setAttribute('completed',true);
+}
+
+function markItemIncomplete(event) {
+  if (event.target.hasAttribute('class')) {
+    event.target.removeAttribute('class');
+  }
+} 
+
+function toggleAll() {
+  if(!allItemsIncomplete) {
+    markAllIncomplete();
+  } else {
+    markAllCompleted();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', doAfterDOMLoaded);
+
+function doAfterDOMLoaded() {
+  displayGroceries();
+  setPageTitle();
+
+  let groceryList = document.querySelectorAll('li');
+  groceryList.forEach((grocery)=> {
+    grocery.addEventListener('click',markItemComplete);
+  });
+
+  groceryList.forEach((grocery)=> {
+    grocery.addEventListener('dblclick',markItemIncomplete);
+  })
+
+  let toggleButton = document.querySelector('a');
+  toggleButton.addEventListener('click',toggleAll);
+
+}
