@@ -11,12 +11,12 @@
     </thead>
     <tbody>
       <tr>
-        <td><input type="text" id="firstNameFilter"/></td>
-        <td><input type="text" id="lastNameFilter"/></td>
-        <td><input type="text" id="usernameFilter"/></td>
-        <td><input type="text" id="emailFilter"/></td>
+        <td><input type="text" id="firstNameFilter" v-model="search.firstName"/></td>
+        <td><input type="text" id="lastNameFilter" v-model="search.lastName"/></td>
+        <td><input type="text" id="usernameFilter" v-model="search.username"/></td>
+        <td><input type="text" id="emailFilter" v-model="search.emailAddress"></td>
         <td>
-          <select id="statusFilter">
+          <select id="statusFilter" v-model="search.status">
             <option value="">Show All</option>
             <option value="Active">Active</option>
             <option value="Inactive">Inactive</option>
@@ -24,27 +24,22 @@
         </td>
       </tr>
       <!-- user listing goes here -->
-      <tr v-for="(user, index) in filteredList" :key="index" >
-      <td>{{ user.firstName }}</td>
-        <td>{{ user.lastName }}</td>
-        <td>{{ user.username }}</td>
-        <td>{{ user.emailAddress }}</td>
-        <td>{{ user.status }}</td>
+      <tr v-for="(user, index) in filteredList" :key="index" :class="{inactive: user.status==='Inactive'}">
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.emailAddress}}</td>
+        <td>{{user.status}}</td>
       </tr>
-
-
-    
-    
-    
     </tbody>
   </table>
 </template>
-
 <script>
 export default {
   name: 'user-list',
   data() {
     return {
+      search: {firstName: '', lastName: '', username: '', emailAddress:'', status: ''},
       users: [
         { firstName: 'John', lastName: 'Smith', username: 'jsmith', emailAddress: 'jsmith@gmail.com', status: 'Active' },
         { firstName: 'Anna', lastName: 'Bell', username: 'abell', emailAddress: 'abell@yahoo.com', status: 'Active' },
@@ -57,22 +52,27 @@ export default {
   },
   computed: {
     filteredList() {
-       let filteredUsers = this.users;
-       if( this.search.firstName != "" ) {
+      let filteredUsers = this.users;
+      if(this.search.firstName != "") {
         filteredUsers = filteredUsers.filter(user => user.firstName.toLowerCase().includes(this.search.firstName.toLowerCase()))
       }
-
-
-
-       return filteredUsers;
-
-
+       if(this.search.lastName != "") {
+        filteredUsers = filteredUsers.filter(user => user.lastName.toLowerCase().includes(this.search.lastName.toLowerCase()))
+      }
+       if(this.search.username != "") {
+        filteredUsers = filteredUsers.filter(user => user.username.toLowerCase().includes(this.search.username.toLowerCase()))
+      }
+       if(this.search.emailAddress != "") {
+        filteredUsers = filteredUsers.filter(user => user.emailAddress.toLowerCase().includes(this.search.emailAddress.toLowerCase()))
+      }
+       if(this.search.status != "") {
+        filteredUsers = filteredUsers.filter(user => user.status === this.search.status)
+      }
+      return filteredUsers;
     }
-
   }
 }
 </script>
-
 <style scoped>
 table {
   margin-top: 20px;
@@ -84,7 +84,7 @@ th {
 td {
   padding: 10px;
 }
-tr.disabled {
+tr.inactive {
   color: red;
 }
 input, select {
